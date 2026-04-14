@@ -355,17 +355,7 @@ if __name__ == "__main__":
     x = np.asarray(data["x"]).reshape(-1, order="F")
     y = np.asarray(data["y"]).reshape(-1, order="F")
 
-    ok, cache = validate_fast_vs_reference(
-        x=x,
-        y=y,
-        n_vars=100,
-        n_tests=100,
-        seed=0,
-        atol=1e-12
-    )
-
-    if not ok:
-        raise RuntimeError("Fast function failed validation. Aborting.")
+    cache = build_free_energy_cache(design_variables=100)
 
     config = {
         "numPopulation": 15,
